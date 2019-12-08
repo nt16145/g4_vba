@@ -1,0 +1,1 @@
+psql -h 172.23.223.11 -U nt16145 r01_j4_exp < 02_pgdump.sql
