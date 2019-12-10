@@ -29,8 +29,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
    $sql_text = "select * from company_23 where name like '%".$company_name."%'"; 
  
    $result   = $connect->query($sql_text); 
- 
-   print "<h3>デーベース検索結果</h3>\n"; // 表の開始(HTML タグ) 
+   $rs = $result->fetchall();
+
+   $number_company = count($rs);
+
+   print "<h3>DB検索結果</h3>\n"; // 表の開始(HTML タグ) 
+   print "<p>全".$number_company."件</p>";
    print "<table border=1 cellspacing=1 cellpadding=1>\n";
    print "<tr>";
    print "<th>code</th>";
@@ -39,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
    print "<th>phone</th>";
    print "<th>labors</th>";
    print "</tr>";
-   $rs = $result->fetchall();
+   //$rs = $result->fetchall();
    foreach($rs as $row):
           print "<tr>";
           print '<td>'.$row['code']."</td>";
