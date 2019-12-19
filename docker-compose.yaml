@@ -1,6 +1,18 @@
 version: '3.7'
-services:
+
+php:
+  build: ./php
+  ports:
+    - 8080:80
+  volumes:
+    - ./html:/var/www/html
+  depends_on:
+    - jocalc1
+
+  services:
     jocalc1:
-        ports:
-            - '5432:5432'
-        build: .
+      image: postgres:9.3
+      ports:
+        - '5432:5432'
+      volumes:
+        - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
